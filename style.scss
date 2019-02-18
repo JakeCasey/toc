@@ -1,0 +1,65 @@
+body {
+  font-family: 'Prospectus';
+}
+
+.text_container {
+  width: 600px;
+  margin-top: 24px;
+}
+.page {
+  display: flex;
+  justify-content: center;
+}
+.toc {
+  margin-bottom: 64px;
+}
+
+li {
+  margin: 12px 0px;
+}
+
+a {
+  color: black;
+}
+
+a:hover {
+  color: gray;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'ProspectusBold';
+}
+
+h4 {
+  font-family: ProspectusThin;
+}
+
+@font-face {
+  font-family: Prospectus;
+  src: url('./fonts/ProspectusStdReg.otf') format('opentype');
+}
+
+@font-face {
+  font-family: ProspectusBold;
+  src: url('./fonts/ProspectusStdBld.otf') format('opentype');
+}
+@font-face {
+  font-family: ProspectusBlock;
+  src: url('./fonts/ProspectusStdBlk.otf') format('opentype');
+}
+@font-face {
+  font-family: ProspectusLight;
+  src: url('./fonts/ProspectusStdLt.otf') format('opentype');
+}
+@font-face {
+  font-family: ProspectusThin;
+  src: url('./fonts/ProspectusStdThn.otf') format('opentype');
+}
+
+@media screen and (max-width: 480px) {
+  div {
+    padding: 8px;
+  }
+}
