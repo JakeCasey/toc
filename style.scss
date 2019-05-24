@@ -1,9 +1,29 @@
+$pad : 8px;
+$desktop_break : $pad*75;
+
+@mixin desktop {
+  @media screen and (min-width: $desktop_break) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: (($desktop_break)-1)) {
+    @content;
+  }
+}
+
+
+
 body {
   font-family: 'Prospectus';
 }
 
 .text_container {
-  width: 600px;
+  width: 100%;
+  @include desktop {
+    width: 600px;
+  }
   margin-top: 24px;
 }
 .page {
@@ -57,9 +77,11 @@ h4 {
   font-family: ProspectusThin;
   src: url('./fonts/ProspectusStdThn.otf') format('opentype');
 }
-
-@media screen and (max-width: 480px) {
-  div {
-    padding: 8px;
+@include mobile {
+  .text_container {
+    padding: $pad*4;
+  }
+  p {
+    font-size: 18px;
   }
 }
