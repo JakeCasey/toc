@@ -1,5 +1,7 @@
 body {
-  font-family: 'Prospectus'; }
+  background-color: #f5f7fa;
+  font-family: 'Prospectus';
+  color: #12263f; }
 
 .text_container {
   max-width: 600px;
