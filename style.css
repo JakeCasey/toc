@@ -2,15 +2,9 @@ body {
   font-family: 'Prospectus'; }
 
 .text_container {
-  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
   margin-top: 24px; }
-  @media screen and (min-width: 600px) {
-    .text_container {
-      width: 600px; } }
-
-.page {
-  display: flex;
-  justify-content: center; }
 
 .toc {
   margin-bottom: 64px; }

@@ -5,6 +5,7 @@
 <body>
   <div class="page">
     <div class="text_container">
+        <h2>Updated 5/24/2019</h2>
       <div class="toc">
         <h1>Table of Contents</h1>
         <ol>
@@ -96,6 +97,12 @@
       <div id="proj6">
         <h2>6. Skeleton Key</h2>
         <h3>Premise: An application framework based on Wes Bos's Advanced React course.</h3>
+        <p> It lives. Go to the backend to see the Readme. </p>
+        <code>
+          git clone http://www.github.com/JakeCasey/skeleton-key-frontend.git
+          git clone http://www.github.com/JakeCasey/skeleton-key-backend.git
+          git clone http://www.github.com/JakeCasey/skeleton-key-prisma.git
+        </code>
       </div>
       <div id="proj7">
         <h2>7. WebBlocks</h2>
@@ -183,6 +190,11 @@
           Maybe I'll release a little bit more about this project in the future, but for now it's gonna have to stay
           like this.
           There's also going to be a big ol' section about deploying this bad boy, too. Probably. Maybe. Whatever.
+        </p>
+        <p>
+          <strong>5/24/19</strong> Wow. What a ride. I actually finished this a long time ago but let this table of contents document die. It's got a lot of shit on it and I'm really not sure if I want to revive it or not, but I better at least mention what ended up happening here. Sometime I ended up setting up <a href="http://dokku.viewdocs.io/dokku/">Dokku</a>, a PaaS for your own server. Why? Because heroku is fucking expensive and that bothers me. 
+          Plus I hate myself, I don't know. There's just something enticing about whiling away my extremely limited time here on earth hunched maliciously over a keyboard alit only by a blinking terminal cursor. Anyway, I may have mentioned that an integral part of this application is that some of it's traffic needs to run over VPN. This is where most of my aforementioned hunching took place. Dokku does a lot of your routing and stuff for you, for example allowing you to host apps on subdomains based on the project name. Very useful for lots of small projects w/ standard routing and obvious connections. Frontend talks to backend talks to database talks to backend talks to frontend. Easy peasy lemon squeezy. Except when you introduce a VPN all that shit just gets tossed out the window and you're left mired in IP tables that you don't really fully understand trying to route connections through the VPN but some of the connections back to the frontend. Poring over esoteric RFC's and man files for linux tools that you've only heard about before but never really found a time to use. Modern web development is so abstracted from a command line that I've never had to read an IPtable before or actually route packets internally on a linux computer.
+          So after about what I would guess to be 80 hours of random bullshitery, I finally gave up and bought a new linode. Had that sucker up and running in about 15 minutes. Kill me.
         </p>
       </div>
       <div id="proj10">
