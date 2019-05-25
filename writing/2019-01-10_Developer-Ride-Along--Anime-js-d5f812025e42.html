@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Developer Ride-Along: Anime.js</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Developer Ride-Along: Anime.js</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Full disclosure: I don’t know Anime.js. In fact, I don’t even really know animation. All I know is that it feels like a hole in my React…
+</section>
+<section data-field="body" class="e-content">
+<section name="e5ee" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="281f" id="281f" class="graf graf--h3 graf--leading graf--title">Developer Ride-Along: Anime.js</h3><p name="8099" id="8099" class="graf graf--p graf-after--h3">Full disclosure: I don’t know Anime.js. In fact, I don’t even really know animation. All I know is that it feels like a hole in my React development skills. I’d love to get a little bit better at understanding animations, if only to shnazz up my projects that little extra bit.</p><p name="828a" id="828a" class="graf graf--p graf-after--p">So, to get started we need a simple React component. I think. We’ll see, I guess. You know as much about anime as I do. Not counting my extensive knowledge of Cowboy Bebop.</p><p name="6e5d" id="6e5d" class="graf graf--p graf-after--p">First thing I started off with was installing anime.js:</p><pre name="21f5" id="21f5" class="graf graf--pre graf-after--p">npm install animejs — save</pre><p name="5b37" id="5b37" class="graf graf--p graf-after--pre">Our component looks like this:</p><pre name="3ef3" id="3ef3" class="graf graf--pre graf-after--p">import React, { Component } from ‘react’; import anime from ‘animejs’;</pre><pre name="4bb9" id="4bb9" class="graf graf--pre graf-after--pre">export default class Home extends Component { componentDidMount() {npm install animejs — save</pre><pre name="8648" id="8648" class="graf graf--pre graf-after--pre">}</pre><pre name="8cc2" id="8cc2" class="graf graf--pre graf-after--pre">render() { return (</pre><pre name="fa03" id="fa03" class="graf graf--pre graf-after--pre">&lt;h1&gt;Come in, stay a while.&lt;/h1&gt;</pre><pre name="c1a8" id="c1a8" class="graf graf--pre graf-after--pre">); } }</pre><p name="0ad1" id="0ad1" class="graf graf--p graf-after--pre">Awesome. We have a little title component for our application. Now let’s make it do something. We first have to figure out how to target it.</p><p name="7261" id="7261" class="graf graf--p graf-after--p">In our componentDidMount, we want to target our element. In this example we’re just going to target our element by class, because that’s easy and nice. But you also have the option to target an object or an array of the types.</p><pre name="2f72" id="2f72" class="graf graf--pre graf-after--p">anime({ targets: ‘.title’ })</pre><p name="a13e" id="a13e" class="graf graf--p graf-after--pre">But so far, it’s doing nothing. That’s lame. Let’s make it fade in.</p><p name="a688" id="a688" class="graf graf--p graf-after--p">And here’s where I ran into a massive roadblock.</p><p name="2eef" id="2eef" class="graf graf--p graf-after--p">Now the roadblock isn’t exactly difficult, however it is technically a roadblock. The first bit is the two margaritas I’ve drank while writing this blog post. That’s more like a speedbump than a roadblock.</p><p name="4e1e" id="4e1e" class="graf graf--p graf-after--p">The second bit is that Next.js (which I’m using in my own boilerplate) hates anime.js, because anime.js needs the document object. And being server side rendered, the document object doesn’t exist when it needs to. I think. In fact this is an excellent example of a developer being stumped for a minute, even on things that they feel confident with. For the moment, I’m just going to skip to a different project structure, and continue.</p><p name="019a" id="019a" class="graf graf--p graf-after--p">Alright and we’re back! We’ve returned with a working setup!</p><p name="1bb7" id="1bb7" class="graf graf--p graf-after--p">In the meantime I’ve added a only a few more parameters to our setup!</p><pre name="83fd" id="83fd" class="graf graf--pre graf-after--p"><code class="markup--code markup--pre-code">anime({<br>  targets: &#39;.title&#39;,<br>  opacity: [0, 100],<br>  delay: 2000,<br>  easing: &#39;easeInOutExpo&#39;,<br>  duration: 3000,<br>});</code></pre><p name="bc06" id="bc06" class="graf graf--p graf-after--pre">What am I seeing? Prop by prop I’ll walk you through.</p><p name="21fc" id="21fc" class="graf graf--p graf-after--p">Targets, this is our css selector that our animation is applied to.</p><p name="9ad6" id="9ad6" class="graf graf--p graf-after--p">Opacity is a range, so we define our first value: 0%, and our final value, 100%.</p><p name="04a5" id="04a5" class="graf graf--p graf-after--p">Our delay is the milliseconds before our animation begins.</p><p name="02af" id="02af" class="graf graf--p graf-after--p">Easing, well now we’ve come to easing. I know what easing does. It controls.. you know, how it moves.</p><p name="0ba7" id="0ba7" class="graf graf--p graf-after--p">But what does that mean really? It associates a value of a property in relation with the duration of the animation. The one we’ve chose in this case is ‘easeInOutExpo’.</p><p name="cab3" id="cab3" class="graf graf--p graf-after--p">Our duration is the time over which the animation should take.</p><p name="6fb7" id="6fb7" class="graf graf--p graf-after--p">Easy.</p><p name="6871" id="6871" class="graf graf--p graf-after--p">We open up our page and… Boom. It works.</p><p name="f158" id="f158" class="graf graf--p graf-after--p">Listen, I’m on vacation and I can’t get this gif maker to work.</p><p name="8d29" id="8d29" class="graf graf--p graf-after--p">So imagine there’s a gif of it working beautifully right here.</p><p name="548b" id="548b" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Yo if this interests you, if it’s cool, if it’s hip, it would really make me happy if you share it, clap for it, comment on it, whatever. A retweet goes a long way let me tell you what. Especially since I directly associate my self worth with the amount of views I get. Ha ha ha. Sigh.</strong></p><p name="cae1" id="cae1" class="graf graf--p graf-after--p graf--trailing"><strong class="markup--strong markup--p-strong">Love you all</strong> ❤ <strong class="markup--strong markup--p-strong">Do something great.</strong></p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@jakecasey" class="p-author h-card">Jake Casey</a> on <a href="https://medium.com/p/d5f812025e42"><time class="dt-published" datetime="2019-01-10T06:08:37.346Z">January 10, 2019</time></a>.</p><p><a href="https://medium.com/@jakecasey/developer-ride-along-anime-js-d5f812025e42" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on May 25, 2019.</p></footer></article></body></html>
