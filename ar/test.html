@@ -8,12 +8,18 @@
           var skyEl = this.el.sceneEl.querySelector('#background');
 
           this.el.addEventListener('mouseenter', function() {
-            skyEl.setAttribute('src', '#paris');
+            if (this.el.getAttribute('value') == 'Trip to Paris') {
+              this.el.setAttribute('value', 'Go back home!');
+              skyEl.setAttribute('src', '#paris');
+            } else {
+              this.el.setAttribute('value', 'Trip to Paris');
+              skyEl.setAttribute('src', '#home');
+            }
           });
 
-          this.el.addEventListener('mouseleave', function() {
-            skyEl.setAttribute('src', '#home');
-          });
+          // this.el.addEventListener('mouseleave', function() {
+          //   skyEl.setAttribute('src', '#home');
+          // });
         },
       });
     </script>
