@@ -6,13 +6,16 @@
       AFRAME.registerComponent('button-interaction-handler', {
         init: function() {
           var skyEl = this.el.sceneEl.querySelector('#background');
+          var text = this.el.sceneEl.querySelector('#text');
 
           this.el.addEventListener('mouseenter', function() {
-            if (this.el.getAttribute('value') == 'Trip to Paris') {
-              this.el.setAttribute('value', 'Go back home!');
+            if (this.getAttribute('isParis') == 'false') {
+              text.setAttribute('value', 'Go back home!');
+              this.setAttribute('isParis', 'true');
               skyEl.setAttribute('src', '#paris');
             } else {
-              this.el.setAttribute('value', 'Trip to Paris');
+              text.setAttribute('value', 'Take a trip to Paris!');
+              this.setAttribute('isParis', 'false');
               skyEl.setAttribute('src', '#home');
             }
           });
@@ -38,6 +41,7 @@
         If we use the property align wisely, we don't need to experiment with position.
       -->
       <a-plane
+        isParis="false"
         button-interaction-handler
         position="3 3 -9"
         height="2"
@@ -45,7 +49,12 @@
         color="#E21D2D"
         position="0 0 -4"
       >
-        <a-text value="Trip to Paris" scale="2 2 2" align="center"></a-text>
+        <a-text
+          id="text"
+          value="Take a trip to Paris!"
+          scale="2 2 2"
+          align="center"
+        ></a-text>
       </a-plane>
 
       <!-- Camera and Cursor. -->
