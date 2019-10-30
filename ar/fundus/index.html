@@ -1,0 +1,222 @@
+<html>
+  <head>
+    <title>Changing the Sky</title>
+    <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-html-shader@0.2.0/dist/aframe-html-shader.min.js"></script>
+    <script src="https://unpkg.com/aframe-slice9-component/dist/aframe-slice9-component.min.js"></script>
+    <script type="module" src="dirigible.js"></script>
+    <style>
+      #dashboard {
+        border-radius: 10px;
+        background: #f8f8f8;
+        color: #333;
+        font-size: 64px;
+      }
+      .content {
+        padding: 80px;
+      }
+      #logo {
+        margin: 0 auto;
+        width: 1000px;
+        height: auto;
+      }
+      .logo_container {
+        border-radius: 10px 10px 10px 10px;
+
+        padding: 40px;
+        width: 100%;
+        background: #c52126;
+      }
+    </style>
+
+    <!-- <script>
+      function changeDashboardText(html) {
+        var doc = document.querySelector('.content');
+        console.log(doc);
+      }
+// instantiate a loader
+var loader = new THREE.SVGLoader();
+
+// load a SVG resource
+loader.load(
+	// resource URL
+	'',
+	// called when the resource is loaded
+	function ( data ) {
+
+		var paths = data.paths;
+		var group = new THREE.Group();
+
+		for ( var i = 0; i < paths.length; i ++ ) {
+
+			var path = paths[ i ];
+
+			var material = new THREE.MeshBasicMaterial( {
+				color: path.color,
+				side: THREE.DoubleSide,
+				depthWrite: false
+			} );
+
+			var shapes = path.toShapes( true );
+
+			for ( var j = 0; j < shapes.length; j ++ ) {
+
+				var shape = shapes[ j ];
+				var geometry = new THREE.ShapeBufferGeometry( shape );
+				var mesh = new THREE.Mesh( geometry, material );
+				group.add( mesh );
+
+			}
+
+		}
+
+		scene.add( group );
+
+	},
+	// called when loading is in progresses
+	function ( xhr ) {
+
+		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+	},
+	// called when loading has errors
+	function ( error ) {
+
+		console.log( 'An error happened' );
+
+	}
+);
+
+      changeDashboardText();
+
+      AFRAME.registerComponent('music-toggle', {
+        init: function() {
+          var play = this.el.sceneEl.querySelector('#play');
+          var pause = this.el.sceneEl.querySelector('#pause');
+          var dashboard = this.el.sceneEl.querySelector('#adash');
+
+          this.el.addEventListener('click', function(evt) {
+            console.log(evt);
+
+            var target = evt.target.id;
+            if (target == 'play') {
+              //play
+              console.log('here');
+              dashboard.components.sound.playSound();
+              play.setAttribute('visible', 'false');
+              pause.setAttribute('visible', 'true');
+            } else {
+              //pause
+              dashboard.components.sound.pauseSound();
+              pause.setAttribute('visible', 'false');
+              play.setAttribute('visible', 'true');
+            }
+          });
+        },
+      });
+
+      AFRAME.registerComponent('button-interaction-handler', {
+        init: function() {
+          // var skyEl = this.el.sceneEl.querySelector('#background');
+          // var text = this.el.sceneEl.querySelector('#text');
+          // var test = this.el.sceneEl.querySelector('#test');
+        },
+      });
+    </script> -->
+  </head>
+  <body>
+    <a-scene>
+      <!-- asset loading -->
+      <a-assets>
+        <img id="home" crossorigin="anonymous" src="./fundus.png" />
+        <img id="logo" src="./emblem.png" />
+        <img
+          id="groundTexture"
+          src="https://cdn.aframe.io/a-painter/images/floor.jpg"
+        />
+      </a-assets>
+
+      <!-- eyeball -->
+      <a-sky radius="500" id="background" src="#home"> </a-sky>
+
+      <!-- dashboard -->
+
+      <a-entity
+        geometry="primitive: plane"
+        position="-0.075 1.464 -1.04"
+        material="shader: flat; src:#logo; transparent: true; side: back;"
+      >
+        <a-entity
+          id="adash"
+          slice9="side: front;"
+          position="0 0 .1"
+          geometry="primitive: plane"
+          material="transparent: true; shader: html; side: front; color: white;target: #dashboard; ratio: width"
+          sound="src: url(./assets/welcometothefundus.mp3);autoplay: false;"
+        ></a-entity>
+        <a-triangle
+          id="play"
+          music-toggle
+          visible="true"
+          color="#c52126"
+          vertex-a="0 0 0"
+          vertex-b="1.5 2 0"
+          vertex-c="3 0 0"
+          position="0.561 0.123 0.113"
+          rotation="-0.11459155902616465 94.65262775561199 88.75116246576451"
+          scale="0.05 0.05 0.05"
+          geometry="vertexB:1.5 0 2"
+          material="shader:flat;side:both"
+        ></a-triangle>
+        <a-entity music-toggle id="pause" visible="false">
+          <a-entity
+            position="0.598 0.203 0.121"
+            mixin="null"
+            geometry="primitive:plane;height:0.14;width:0.04"
+            material="color:#c52127"
+          ></a-entity>
+          <a-entity
+            position="0.548 0.203 0.121"
+            mixin="null"
+            geometry="width:0.04;height:0.14;primitive:plane"
+            material="color:#c52127"
+          ></a-entity>
+        </a-entity>
+      </a-entity>
+
+      <!-- floor -->
+      <a-plane
+        src="#groundTexture"
+        rotation="-90 0 0"
+        width="7"
+        height="7"
+      ></a-plane>
+
+      <!-- Camera and Cursor. -->
+      <a-camera>
+        <a-cursor id="test" color="#11D8C4" fuse="true" timeout="10"></a-cursor>
+      </a-camera>
+
+      <!-- music! -->
+
+      <!-- Controllers. -->
+      <a-entity laser-controls="hand: right"></a-entity>
+    </a-scene>
+
+    <!-- dashboard html  -->
+    <div
+      style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden; background: transparent"
+    >
+      <div id="dashboard">
+        <div class="logo_container">
+          <img id="logo" src="test2.svg" />
+        </div>
+
+        <div class="content">
+          <h1 style="text-align: center;">Welcome to the fundus of the eye!</h1>
+          <p>Some test content is below here.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
